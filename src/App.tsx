@@ -1,14 +1,18 @@
-import { Routes, Route } from "react-router-dom";
+import { UserState } from 'context/UserState'
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import { Home } from "pages/home";
-
-import { Finances } from "pages/finances";
+// PAGES
+import { Home } from "pages/home/Home";
+import { Finances } from "pages/finances/Finances";
 
 export const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/finances" element={<Finances />} />
-    </Routes>
+    <UserState>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/finances" element={<Finances />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </UserState>
   );
 };

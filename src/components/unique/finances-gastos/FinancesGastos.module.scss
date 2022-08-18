@@ -1,0 +1,63 @@
+@import "../../../sass/variables";
+
+.finances__gastos {
+
+  margin-top: 20px;
+  
+  &_header {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+
+    button{
+      min-width: 50px;
+      background-color: $secondary;
+      outline: none;
+      border-radius: 3px;
+      color: $white;
+      border: none;
+      cursor: pointer;
+    }
+
+  }
+
+  &_gastos {
+    &_gasto {
+      background-color: $primary;
+      display: flex;
+      margin: 5px 0;
+      padding: 10px 10px;
+      color: $white;
+      border-radius: 5px;
+
+      & > div:first-child {
+        width: 80%;
+      }
+
+      & > div:last-child {
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &_a {
+        color: red;
+      }
+
+      &_m {
+        color: orange;
+      }
+
+      &_b {
+        color: yellow;
+      }
+    }   
+  }
+
+  &_empty{
+    color: gray;
+    font-size: 1.2em;
+    padding: 5px 0;   
+    text-align: center;
+  }
+}

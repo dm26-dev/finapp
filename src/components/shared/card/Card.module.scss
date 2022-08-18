@@ -1,0 +1,28 @@
+@import '../../../sass/variables';
+
+.card{
+    position: relative;
+    background-color: $secondary;
+    background: #00B4DB;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0083B0, #00B4DB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    height: 80%;
+    width: 100%;
+    border-radius: 5px;
+    color: white;
+    padding: 40px;
+
+    &__monto{
+        // background-color: red;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin: 40px;
+
+        span{
+            // color: red;
+            margin-right: 10px;
+        }
+    }
+}

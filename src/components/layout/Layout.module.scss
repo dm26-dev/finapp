@@ -1,0 +1,16 @@
+@import "./../../sass/variables";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $primary;
+  padding: 12px;
+  color: $white;
+
+  span,
+  svg {
+    font-size: 1.8em;
+    cursor: pointer;
+  }
+}
