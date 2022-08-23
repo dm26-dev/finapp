@@ -1,72 +1,20 @@
-import { useState, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
+import { monthlyExpensesFormat } from 'helper/monthlyExpensesFormat'
 
 export const UserContext = createContext(null);
 
+const initialState = () => {
+    const monthlyExpensesLS = JSON.parse(localStorage.getItem('monthlyExpenseLS')) || monthlyExpensesFormat
+    return monthlyExpensesLS
+}
+
 export const UserState = ({ children }) => {
     const [currentMonth, setCurrentMonth] = useState(1);
+    const [monthlyExpenses, setMonthlyExpenses] = useState(initialState());
 
-    const [monthlyExpenses, setMonthlyExpenses] = useState([
-        {
-            id: 1,
-            name: "Enero",
-            expenses: [],
-        },
-        {
-            id: 2,
-            name: "Febrero",
-            expenses: [],
-        },
-        {
-            id: 3,
-            name: "Marzo",
-            expenses: [],
-        },
-        {
-            id: 4,
-            name: "Abril",
-            expenses: [],
-        },
-        {
-            id: 5,
-            name: "Mayo",
-            expenses: [],
-        },
-        {
-            id: 6,
-            name: "Junio",
-            expenses: [],
-        },
-        {
-            id: 7,
-            name: "Julio",
-            expenses: [],
-        },
-        {
-            id: 8,
-            name: "Agosto",
-            expenses: [],
-        },
-        {
-            id: 9,
-            name: "Septiembre",
-            expenses: [],
-        },
-        {
-            id: 10,
-            name: "Octubre",
-            expenses: [],
-        },
-        {
-            id: 11,
-            name: "Noviembre",
-            expenses: [],
-        },
-        {
-            id: 12,
-            name: "Diciembre",
-            expenses: [],
-        },
-    ]);
+    useEffect(() => {
+        localStorage.setItem('monthlyExpenseLS', JSON.stringify(monthlyExpenses))
+    }, [monthlyExpenses])
 
     const saveExpense = (expense = {}) => {
         const newExpenses = monthlyExpenses.find(

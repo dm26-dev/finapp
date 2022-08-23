@@ -36,7 +36,7 @@
         color: gray;
         cursor: pointer;
       }
-    }  
+    }
 
     input {
       width: 100%;
@@ -45,6 +45,22 @@
       outline: none;
       font-size: 1.2em;
       margin-bottom: 20px;
+    }
+
+    &_date {
+
+      margin-bottom: 15px;
+
+      & > select {
+        padding: 5px;
+        width: 100%;
+        font-size: 1.2em;
+        
+        &:nth-child(2){
+          margin: 0 20px;
+        }
+        
+      }
     }
 
     button {

@@ -48,7 +48,7 @@ export const FinancesGastos = ({ setViewModal }) => {
 
                             <div>
                                 <span>{gasto.value}</span>
-                                <span className={classSelected}>{gasto.level}</span>
+                                <span className={classSelected}>{/* {gasto.level} */} {gasto.date?.day}</span>
                             </div>
                         </div>
                     );
