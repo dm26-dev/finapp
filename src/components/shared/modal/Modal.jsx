@@ -7,18 +7,12 @@ import styles from './Modal.module.scss'
 import { monthlyExpensesFormat } from 'helper/monthlyExpensesFormat'
 
 const days = (number = 3) => {
-
     let daysMonth = []
-
     for (let i = 1; i <= number; i++) {
         daysMonth.push(i)
     }
-
     return daysMonth
-
 }
-
-
 
 export const Modal = ({ viewModal, setViewModal }) => {
 
@@ -37,13 +31,14 @@ export const Modal = ({ viewModal, setViewModal }) => {
     })
 
     const sendExpense = (e) => {
-
         e.preventDefault()
 
+        const idExpense = crypto.randomUUID().slice(0, 7)
+       
         const isvalid = expense.trim().length > 0 && value.trim().length > 0
 
         if (isvalid) {
-            saveExpense({ expense, value, date })
+            saveExpense({ id: idExpense, expense, value, date })
             setViewModal(false)
             setExpense('')
             setValue('0')
@@ -54,7 +49,7 @@ export const Modal = ({ viewModal, setViewModal }) => {
     }
 
     const changeDayDate = (e) => {
-        setDate({ year: '2022', month: currentMonth,day:e.target.value })
+        setDate({ year: '2022', month: currentMonth, day: e.target.value })
     }
 
     if (viewModal)

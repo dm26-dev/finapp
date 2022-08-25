@@ -19,7 +19,7 @@ import { UserContext } from 'context/UserState'
 
 export const FinancesSlider = () => {
 
-    const { setCurrentMonth, monthlyExpenses } = useContext(UserContext)
+    const { setCurrentMonth, monthlyExpenses } = useContext(UserContext)   
 
     const getIndexSlide = (index = 0) => setCurrentMonth(index + 1)
 

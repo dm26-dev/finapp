@@ -17,18 +17,31 @@ export const UserState = ({ children }) => {
     }, [monthlyExpenses])
 
     const saveExpense = (expense = {}) => {
-        const newExpenses = monthlyExpenses.find(
-            (expense) => expense.id === currentMonth
-        );
-
-        newExpenses.expenses = [...newExpenses.expenses, expense];
-
-        setMonthlyExpenses([...monthlyExpenses, newExpenses]);
+        const newMonthlyExpenses = [...monthlyExpenses]
+        newMonthlyExpenses[currentMonth - 1].expenses.push(expense)
+        setMonthlyExpenses(newMonthlyExpenses);
     };
+
+    const deleteExpense = (id = '') => {
+
+        const newMonthlyExpenses = [...monthlyExpenses]
+
+        const monthExpense = newMonthlyExpenses[currentMonth - 1]
+
+        const expenses = monthExpense.expenses
+
+        const newExpenses = expenses.filter(exp => exp.id !== id)
+
+        newMonthlyExpenses[currentMonth - 1].expenses = newExpenses
+
+        setMonthlyExpenses(newMonthlyExpenses)
+
+    }
+
 
     return (
         <UserContext.Provider
-            value={{ monthlyExpenses, saveExpense, currentMonth, setCurrentMonth }}
+            value={{ monthlyExpenses, saveExpense, deleteExpense, currentMonth, setCurrentMonth, setMonthlyExpenses }}
         >
             {children}
         </UserContext.Provider>

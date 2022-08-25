@@ -4,9 +4,11 @@ import { UserContext } from 'context/UserState'
 
 import st from "./FinancesGastos.module.scss";
 
+import { BsDashLg } from "react-icons/bs";
+
 export const FinancesGastos = ({ setViewModal }) => {
 
-    const { monthlyExpenses, currentMonth } = useContext(UserContext)
+    const { monthlyExpenses, currentMonth, deleteExpense } = useContext(UserContext)
 
     return (
         <div className={st.finances__gastos}>
@@ -49,6 +51,7 @@ export const FinancesGastos = ({ setViewModal }) => {
                             <div>
                                 <span>{gasto.value}</span>
                                 <span className={classSelected}>{/* {gasto.level} */} {gasto.date?.day}</span>
+                                <BsDashLg onClick={()=>deleteExpense(gasto.id)} />
                             </div>
                         </div>
                     );
@@ -58,7 +61,7 @@ export const FinancesGastos = ({ setViewModal }) => {
             {
                 monthlyExpenses[currentMonth - 1].expenses.length === 0 &&
                 <div className={st.finances__gastos_empty}>
-                    No posees gastos en { monthlyExpenses[currentMonth - 1].name}
+                    No posees gastos en {monthlyExpenses[currentMonth - 1].name}
                 </div>
             }
 
