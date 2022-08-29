@@ -11,6 +11,7 @@ const initialState = () => {
 export const UserState = ({ children }) => {
     const [currentMonth, setCurrentMonth] = useState(1);
     const [monthlyExpenses, setMonthlyExpenses] = useState(initialState());
+    const [activeSidebar, setActiveSidebar] = useState(false)
 
     useEffect(() => {
         localStorage.setItem('monthlyExpenseLS', JSON.stringify(monthlyExpenses))
@@ -38,10 +39,9 @@ export const UserState = ({ children }) => {
 
     }
 
-
     return (
         <UserContext.Provider
-            value={{ monthlyExpenses, saveExpense, deleteExpense, currentMonth, setCurrentMonth, setMonthlyExpenses }}
+            value={{ monthlyExpenses, saveExpense, deleteExpense, currentMonth, setCurrentMonth, setMonthlyExpenses, activeSidebar, setActiveSidebar }}
         >
             {children}
         </UserContext.Provider>

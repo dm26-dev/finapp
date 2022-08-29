@@ -1,23 +1,18 @@
 import { useContext } from 'react'
 
-import styles from "./Layout.module.scss";
-import { BsJustify } from "react-icons/bs";
-
 import { useNavigate } from 'react-router-dom'
-
 import { UserContext } from 'context/UserState'
-
-import { monthlyExpensesFormat } from 'helper/monthlyExpensesFormat'
+import { BsJustify } from "react-icons/bs";
+import styles from "./Layout.module.scss";
 
 export const Header = () => {
 
-    const { setMonthlyExpenses } = useContext(UserContext)
+    const { setActiveSidebar, setCurrentMonth } = useContext(UserContext)
 
     const navigate = useNavigate()
 
     const redirectHome = () => {
-        // PRUEBAS ELIMINAR DESPUES
-        setMonthlyExpenses(monthlyExpensesFormat)
+        setCurrentMonth(1)
         navigate('/')
     }
 
@@ -25,7 +20,7 @@ export const Header = () => {
         <div className={styles.header}>
             <span onClick={redirectHome}>{"<"}</span>
             <h2>My Billetera</h2>
-            <BsJustify />
+            <BsJustify onClick={() => setActiveSidebar(true)} />
         </div>
     );
 };

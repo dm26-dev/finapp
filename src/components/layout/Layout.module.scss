@@ -14,3 +14,67 @@
     cursor: pointer;
   }
 }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+  width: 75%;
+  height: 100vh;
+  z-index: 3;
+  transform: translateX(100%);
+  transition: transform linear 0.1s;
+
+  padding: 20px;
+
+  h3 {
+    margin: 20px 0;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  &__active {
+    transform: translateX(0);
+  }
+
+  & > form {
+    label {
+      font-size: 1.1em;
+      color: gray;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      height: 35px;
+      margin-bottom: 25px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    button {
+      background-color: #0083b0;
+      padding: 11px 40px;
+      border: none;
+      border-radius: 5px;
+
+      color: white;
+    }
+  }
+}
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+}

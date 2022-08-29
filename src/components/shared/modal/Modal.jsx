@@ -1,55 +1,48 @@
 import { useState, useContext } from 'react'
 
+// CONTEXT
 import { UserContext } from 'context/UserState'
 
+// FUNCTIONS
+import { monthlyExpensesFormat } from 'helper/monthlyExpensesFormat'
+import { getCurrentDay } from 'functions/getCurrentDay'
+import { getDaysCurrentMonth } from 'functions/getDaysCurrentMonth'
+
+// STYLES
 import styles from './Modal.module.scss'
 
-import { monthlyExpensesFormat } from 'helper/monthlyExpensesFormat'
-
-const days = (number = 3) => {
-    let daysMonth = []
-    for (let i = 1; i <= number; i++) {
-        daysMonth.push(i)
+const initialExpenseForm = {
+    expense: '',
+    value: '',
+    date: {
+        year: '2022',
+        month: '8',
+        day: getCurrentDay()
     }
-    return daysMonth
 }
 
 export const Modal = ({ viewModal, setViewModal }) => {
 
     const { saveExpense, currentMonth } = useContext(UserContext)
 
-    const [expense, setExpense] = useState('')
-    const [value, setValue] = useState('0')
-
-    // CAPTURAR LOS DATOS PARA INICIALIZAR LA FECHA CON LA ACTUAL CON DAYJS O MOMENTJS O OTRA
-    // YA QUE MOMENT ESTA OBSOLETA
-
-    const [date, setDate] = useState({
-        year: '2022',
-        month: '8',
-        day: '22'
-    })
+    const [expenseForm, setExpenseForm] = useState(initialExpenseForm)   
 
     const sendExpense = (e) => {
         e.preventDefault()
-
         const idExpense = crypto.randomUUID().slice(0, 7)
-       
-        const isvalid = expense.trim().length > 0 && value.trim().length > 0
-
+        const isvalid = expenseForm.expense.trim().length > 0 && expenseForm.value.trim().length > 0
+        const newExpense = { ...expenseForm, id: idExpense }
         if (isvalid) {
-            saveExpense({ id: idExpense, expense, value, date })
+            saveExpense(newExpense)
             setViewModal(false)
-            setExpense('')
-            setValue('0')
+            setExpenseForm(initialExpenseForm)
         } else {
             return
         }
-
     }
 
     const changeDayDate = (e) => {
-        setDate({ year: '2022', month: currentMonth, day: e.target.value })
+        setExpenseForm(prev => ({ ...prev, date: { year: '2022', month: currentMonth, day: e.target.value } }))
     }
 
     if (viewModal)
@@ -59,21 +52,21 @@ export const Modal = ({ viewModal, setViewModal }) => {
                 <form className={styles.modal__form} onSubmit={sendExpense}>
                     <div> <div onClick={() => setViewModal(false)}>x</div></div>
                     <label htmlFor="">Gasto</label>
-                    <input type="text" value={expense} onChange={e => setExpense(e.target.value)} />
+                    <input type="text" value={expenseForm.expense} onChange={e => setExpenseForm(prev => ({ ...prev, expense: e.target.value }))} />
                     <label htmlFor="">Valor</label>
-                    <input type="number" value={value} onChange={e => setValue(e.target.value)} />
+                    <input type="number" value={expenseForm.value} onChange={e => setExpenseForm(prev => ({ ...prev, value: e.target.value }))} />
 
                     <div className={styles.modal__form_date}>
 
-                        <select name="day" id="" value={date.day} onChange={e => changeDayDate(e)} >
-                            {days(31).map(day => <option value={day} key={day}>{day}</option>)}
+                        <select name="day" id="" value={expenseForm.date.day} onChange={e => changeDayDate(e)} >
+                            {getDaysCurrentMonth().map(day => <option value={day} key={day}>{day}</option>)}
                         </select>
 
                         <select name="month" id="" value={currentMonth} disabled>
                             {monthlyExpensesFormat.map(month => <option value={month.id} key={month.id}>{month.name}</option>)}
                         </select>
 
-                        <select name="year" id="" value={date.year} disabled>
+                        <select name="year" id="" value={expenseForm.date.year} disabled>
                             <option value="">2022</option>
                         </select>
 
