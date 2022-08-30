@@ -6,15 +6,26 @@ import st from "./FinancesGastos.module.scss";
 
 import { BsDashLg } from "react-icons/bs";
 
+
+import { useNavigate } from 'react-router-dom'
+
 export const FinancesGastos = ({ setViewModal }) => {
 
+    const navigate = useNavigate()
+
     const { monthlyExpenses, currentMonth, deleteExpense } = useContext(UserContext)
+
+    const redirectStatistics = () => {
+
+        navigate('/statistics')
+
+    }
 
     return (
         <div className={st.finances__gastos}>
 
             <div className={st.finances__gastos_header}>
-                <h2>Gastos</h2>
+                <h3 onClick={redirectStatistics}>Ver Estadisticas</h3>
                 <button onClick={() => setViewModal(true)}>+</button>
             </div>
 
@@ -51,7 +62,7 @@ export const FinancesGastos = ({ setViewModal }) => {
                             <div>
                                 <span>{gasto.value}</span>
                                 <span className={classSelected}>{/* {gasto.level} */} {gasto.date?.day}</span>
-                                <BsDashLg onClick={()=>deleteExpense(gasto.id)} />
+                                <BsDashLg onClick={() => deleteExpense(gasto.id)} />
                             </div>
                         </div>
                     );

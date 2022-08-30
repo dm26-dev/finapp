@@ -25,7 +25,7 @@ export const Modal = ({ viewModal, setViewModal }) => {
 
     const { saveExpense, currentMonth } = useContext(UserContext)
 
-    const [expenseForm, setExpenseForm] = useState(initialExpenseForm)   
+    const [expenseForm, setExpenseForm] = useState(initialExpenseForm)
 
     const sendExpense = (e) => {
         e.preventDefault()
@@ -50,12 +50,17 @@ export const Modal = ({ viewModal, setViewModal }) => {
             <div className={styles.modal} >
 
                 <form className={styles.modal__form} onSubmit={sendExpense}>
-                    <div> <div onClick={() => setViewModal(false)}>x</div></div>
-                    <label htmlFor="">Gasto</label>
-                    <input type="text" value={expenseForm.expense} onChange={e => setExpenseForm(prev => ({ ...prev, expense: e.target.value }))} />
-                    <label htmlFor="">Valor</label>
-                    <input type="number" value={expenseForm.value} onChange={e => setExpenseForm(prev => ({ ...prev, value: e.target.value }))} />
-
+                    <div> <div onClick={() => setViewModal(false)}>x</div></div>                   
+                    <input
+                        type="text" value={expenseForm.expense}
+                        onChange={e => setExpenseForm(prev => ({ ...prev, expense: e.target.value }))}
+                        placeholder={'Gasto'}
+                    />                  
+                    <input
+                        type="number" value={expenseForm.value}
+                        onChange={e => setExpenseForm(prev => ({ ...prev, value: e.target.value }))}
+                        placeholder={'Valor'}
+                    />
                     <div className={styles.modal__form_date}>
 
                         <select name="day" id="" value={expenseForm.date.day} onChange={e => changeDayDate(e)} >

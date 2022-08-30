@@ -13,8 +13,7 @@ export const Finances = () => {
 
   return (
     <Layout>
-      <div className={styles.finances}>
-        <h2>Finanzas</h2>
+      <div className={styles.finances}>       
         <FinancesSlider />
         <FinancesGastos setViewModal={setViewModal} />
         <Modal viewModal={viewModal} setViewModal={setViewModal} />

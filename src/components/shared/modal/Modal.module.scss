@@ -16,7 +16,7 @@
     background-color: white;
     width: 90%;
     height: auto;
-    padding: 15px;
+    padding:5px 25px;
     border-radius: 3px;
     padding-bottom: 35px;
 
@@ -40,26 +40,26 @@
 
     input {
       width: 100%;
-      padding: 5px;
+      padding: 5px 0;
       margin: 5px 0;
       outline: none;
       font-size: 1.2em;
       margin-bottom: 20px;
+      border: none;
+      border-bottom: 1px solid gainsboro;
     }
 
     &_date {
-
       margin-bottom: 15px;
 
       & > select {
         padding: 5px;
         width: 100%;
         font-size: 1.2em;
-        
-        &:nth-child(2){
+
+        &:nth-child(2) {
           margin: 0 20px;
         }
-        
       }
     }
 
