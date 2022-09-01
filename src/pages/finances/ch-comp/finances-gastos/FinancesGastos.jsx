@@ -16,9 +16,7 @@ export const FinancesGastos = ({ setViewModal }) => {
     const { monthlyExpenses, currentMonth, deleteExpense } = useContext(UserContext)
 
     const redirectStatistics = () => {
-
         navigate('/statistics')
-
     }
 
     return (

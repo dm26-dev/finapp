@@ -1,15 +1,14 @@
-@import "../../../sass/variables";
+@import "./../../../../sass/variables";
 
 .finances__gastos {
-
   margin-top: 20px;
-  
+
   &_header {
     margin: 8px 0;
     display: flex;
     justify-content: space-between;
 
-    button{
+    button {
       min-width: 50px;
       background-color: $secondary;
       outline: none;
@@ -18,7 +17,6 @@
       border: none;
       cursor: pointer;
     }
-
   }
 
   &_gastos {
@@ -38,11 +36,10 @@
         width: 30%;
         display: flex;
         justify-content: space-between;
-     
-        svg{
-          color: red;        
+
+        svg {
+          color: red;
         }
-       
       }
 
       &_a {
@@ -56,13 +53,13 @@
       &_b {
         color: yellow;
       }
-    }   
+    }
   }
 
-  &_empty{
+  &_empty {
     color: gray;
     font-size: 1.2em;
-    padding: 5px 0;   
+    padding: 5px 0;
     text-align: center;
   }
 }

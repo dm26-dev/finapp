@@ -5,7 +5,7 @@ import { UserContext } from 'context/UserState'
 import { BsJustify } from "react-icons/bs";
 import styles from "./Layout.module.scss";
 
-export const Header = () => {
+export const Header = ({ urlRedirect = '/' }) => {
 
     const { setActiveSidebar, setCurrentMonth } = useContext(UserContext)
 
@@ -13,7 +13,7 @@ export const Header = () => {
 
     const redirectHome = () => {
         setCurrentMonth(1)
-        navigate('/')
+        navigate(urlRedirect)
     }
 
     return (

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 import { Layout } from 'components/layout/Layout'
-import { FinancesSlider } from 'components/unique/finances-slider/FinancesSlider'
-import { FinancesGastos } from 'components/unique/finances-gastos/FinancesGastos'
+import { FinancesSlider } from './ch-comp/finances-slider/FinancesSlider'
+import { FinancesGastos } from './ch-comp/finances-gastos/FinancesGastos'
 import { Modal } from 'components/shared/modal/Modal'
 
 import styles from './Finances.module.scss'
@@ -13,7 +13,7 @@ export const Finances = () => {
 
   return (
     <Layout>
-      <div className={styles.finances}>       
+      <div className={styles.finances}>
         <FinancesSlider />
         <FinancesGastos setViewModal={setViewModal} />
         <Modal viewModal={viewModal} setViewModal={setViewModal} />

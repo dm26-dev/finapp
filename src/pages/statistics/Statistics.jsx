@@ -12,28 +12,46 @@ export const options = {
     legend: { position: "bottom" },
 };
 
-const generateRandomIntegerInRange = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 export const Statistics = () => {
 
     const { monthlyExpenses } = useContext(UserContext)
- 
+
     const newData = monthlyExpenses.map(data => {
-        return [data.name.substring(0, 3), generateRandomIntegerInRange(10, 1000000)]
+        const arrayNumbers = data.expenses.map(exp => Number(exp.value))
+        let total = arrayNumbers.reduce((a, b) => a + b, 0);
+        console.log(total);
+        return [data.name.substring(0, 3), total]
     })
 
     return (
-        <Layout>
-            <div style={{ padding: '10px' }}>
-                <Chart
-                    chartType="LineChart"
-                    width="100%"
-                    height="400px"
-                    data={[["Month", "Month"], ...newData]}
-                    options={options}
-                />
+        <Layout urlRedirect={'/finances'}>
+            <div className={styles.statistics}>
+
+                <div className={styles.statistics__chart}>
+                    <Chart
+                        chartType="LineChart"
+                        width="100%"
+                        height="500px"
+                        data={[["Month", "Month"], ...newData]}
+                        options={options}
+                    />
+                </div>
+
+                <div className={styles.statistics__expenses}>
+                    {newData.map(exp => {
+                        return (
+                            <div className={styles.statistics__expenses_total} key={exp[0]} >
+                                <span>
+                                    {exp[0]}
+                                </span>
+                                <span>
+                                    {exp[1]}
+                                </span>
+                            </div>
+                        )
+                    })}
+                </div>
+
             </div>
         </Layout>
     )

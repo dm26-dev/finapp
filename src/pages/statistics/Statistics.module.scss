@@ -1,0 +1,24 @@
+@import "./../../sass/variables";
+
+.statistics {
+  &__chart {
+    height: 500px;
+  }
+  &__expenses {
+    padding: 0 20px;
+
+    &_total {
+      background-color: $primary;
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+      padding: 10px 10px;
+      color: $white;
+      border-radius: 5px;
+      
+      &:nth-child(odd) {
+        color: $secondary;
+      }
+    }
+  }
+}
